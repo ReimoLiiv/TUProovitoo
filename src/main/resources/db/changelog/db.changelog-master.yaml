@@ -1,0 +1,282 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Reimo
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+
+        - createTable:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstName
+                  type: varchar(255)
+              - column:
+                  name: lastName
+                  type: varchar(255)
+              - column:
+                  name: username
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: address
+                  type: varchar(255)
+              - column:
+                  name: country
+                  type: varchar(255)
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_users_clients
+                    references: users(id)
+
+  - changeSet:
+      id: 2
+      author: Reimo
+      changes:
+        # User 1
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: username
+                  value: "joonastamm"
+              - column:
+                  name: password
+                  value: "sipelgas"
+              - column:
+                  name: name
+                  value: "Joonas"
+        # User 2
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: username
+                  value: "mariakask"
+              - column:
+                  name: password
+                  value: "elevant"
+              - column:
+                  name: name
+                  value: "Maria"
+        # User 3
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: username
+                  value: "toomaspaju"
+              - column:
+                  name: password
+                  value: "kotkas"
+              - column:
+                  name: name
+                  value: "Toomas"
+
+        # Clients for User 1
+        - insert:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: firstName
+                  value: "Lotte"
+              - column:
+                  name: lastName
+                  value: "Leiutajatekülast"
+              - column:
+                  name: username
+                  value: "lotteleiutaja"
+              - column:
+                  name: email
+                  value: "lotte@leiutajakyla.ee"
+              - column:
+                  name: address
+                  value: "Leiutajate 1, Leiutajateküla"
+              - column:
+                  name: country
+                  value: "Eesti"
+              - column:
+                  name: user_id
+                  value: 1
+        - insert:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: firstName
+                  value: "Karlsson"
+              - column:
+                  name: lastName
+                  value: "Katuselt"
+              - column:
+                  name: username
+                  value: "lennukarlsson"
+              - column:
+                  name: email
+                  value: "karlsson@lennuki.ee"
+              - column:
+                  name: address
+                  value: "Lennutänav 1, Tallinn"
+              - column:
+                  name: country
+                  value: "Eesti"
+              - column:
+                  name: user_id
+                  value: 1
+
+        # Clients for User 2
+        - insert:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: firstName
+                  value: "Nublu"
+              - column:
+                  name: lastName
+                  value: "Pilvepiirilt"
+              - column:
+                  name: username
+                  value: "nublupilv"
+              - column:
+                  name: email
+                  value: "nublu@pilvemail.ee"
+              - column:
+                  name: address
+                  value: "Pilvetee 7, Kuressaare"
+              - column:
+                  name: country
+                  value: "Eesti"
+              - column:
+                  name: user_id
+                  value: 2
+        - insert:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  value: 4
+              - column:
+                  name: firstName
+                  value: "Pipi"
+              - column:
+                  name: lastName
+                  value: "Pikksukk"
+              - column:
+                  name: username
+                  value: "pipip"
+              - column:
+                  name: email
+                  value: "pipi@pikksukk.ee"
+              - column:
+                  name: address
+                  value: "Vahtrapuu 1, Võru"
+              - column:
+                  name: country
+                  value: "Eesti"
+              - column:
+                  name: user_id
+                  value: 2
+
+        # Clients for User 3
+        - insert:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  value: 5
+              - column:
+                  name: firstName
+                  value: "Lionel"
+              - column:
+                  name: lastName
+                  value: "Messi"
+              - column:
+                  name: username
+                  value: "lionelm"
+              - column:
+                  name: email
+                  value: "lionel.messi@jalgpall.ee"
+              - column:
+                  name: address
+                  value: "Goalkeeper 10, Miami"
+              - column:
+                  name: country
+                  value: "USA"
+              - column:
+                  name: user_id
+                  value: 3
+        - insert:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  value: 6
+              - column:
+                  name: firstName
+                  value: "Sipsik"
+              - column:
+                  name: lastName
+                  value: "Ragdoll"
+              - column:
+                  name: username
+                  value: "sipsikr"
+              - column:
+                  name: email
+                  value: "sipsik@nukk.ee"
+              - column:
+                  name: address
+                  value: "Nukumaja 5, Narva"
+              - column:
+                  name: country
+                  value: "Eesti"
+              - column:
+                  name: user_id
+                  value: 3
+
