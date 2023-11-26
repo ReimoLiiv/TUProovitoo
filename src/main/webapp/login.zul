@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Login" border="normal" closable="false" draggable="false" mode="modal" width="300px">
+        <vlayout>
+            <label value="Username:"/>
+            <textbox id="username" width="95%"/>
+
+            <label value="Password:"/>
+            <textbox id="password" type="password" width="95%"/>
+
+            <button id="loginButton" label="Login" onClick="onLoginClicked()"/>
+        </vlayout>
+    </window>
+</zk>
