@@ -1,0 +1,11 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <style src="/styles.css"/>
+    <window apply="TU.proovitoo.controller.MainPageController" sclass="centered-title main-window" title="Main Page" border="normal" mode="modal" width="800px" height="600px">
+        <vlayout sclass="main-layout">
+
+            <label id="clientsTitle" sclass="clients-title" value="Clients:"/>
+
+        </vlayout>
+        <button id="logoutButton" label="Log Out" sclass="logout-button"/>
+    </window>
+</zk>

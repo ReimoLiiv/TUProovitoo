@@ -24,7 +24,7 @@ databaseChangeLog:
                   type: varchar(255)
 
         - createTable:
-            tableName: clients.zul
+            tableName: mainPage.zul
             columns:
               - column:
                   name: id
@@ -104,17 +104,18 @@ databaseChangeLog:
                   value: 3
               - column:
                   name: username
-                  value: "toomaspaju"
+                  value: ""
               - column:
                   name: password
-                  value: "kotkas"
+                  value: ""
               - column:
                   name: name
                   value: "Toomas"
 
+
         # Clients for User 1
         - insert:
-            tableName: clients.zul
+            tableName: mainPage.zul
             columns:
               - column:
                   name: id
@@ -141,7 +142,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: clients.zul
+            tableName: mainPage.zul
             columns:
               - column:
                   name: id
@@ -170,7 +171,7 @@ databaseChangeLog:
 
         # Clients for User 2
         - insert:
-            tableName: clients.zul
+            tableName: mainPage.zul
             columns:
               - column:
                   name: id
@@ -197,7 +198,7 @@ databaseChangeLog:
                   name: user_id
                   value: 2
         - insert:
-            tableName: clients.zul
+            tableName: mainPage.zul
             columns:
               - column:
                   name: id
@@ -226,7 +227,7 @@ databaseChangeLog:
 
         # Clients for User 3
         - insert:
-            tableName: clients.zul
+            tableName: mainPage.zul
             columns:
               - column:
                   name: id
@@ -253,7 +254,7 @@ databaseChangeLog:
                   name: user_id
                   value: 3
         - insert:
-            tableName: clients.zul
+            tableName: mainPage.zul
             columns:
               - column:
                   name: id

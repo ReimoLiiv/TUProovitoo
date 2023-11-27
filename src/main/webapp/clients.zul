@@ -1,5 +1,0 @@
-<zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Clients" border="normal" width="600px" height="400px">
-        <!-- UI components like listbox, buttons, etc. go here -->
-    </window>
-</zk>

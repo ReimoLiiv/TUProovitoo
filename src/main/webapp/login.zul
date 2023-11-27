@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <style src="/styles.css"/>
-    <window apply="TU.proovitoo.controller.LoginController" title="Login" border="normal" closable="false" draggable="false" mode="modal" sclass="non-draggable-window" width="300px">
+    <window apply="TU.proovitoo.controller.LoginController" title="Login" id="loginWindow" border="normal" closable="false" draggable="false" mode="modal" sclass="login-window">
         <vlayout>
-            <label value="Username:"/>
-            <textbox id="username" width="95%"/>
+            <label sclass="login-label" value="Username:"/>
+            <textbox id="username" sclass="login-textbox"/>
 
-            <label value="Password:"/>
-            <textbox id="password" type="password" width="95%"/>
+            <label sclass="login-label" value="Password:"/>
+            <textbox id="password" type="password" sclass="login-textbox"/>
 
             <button id="loginButton" label="Login" />
         </vlayout>
