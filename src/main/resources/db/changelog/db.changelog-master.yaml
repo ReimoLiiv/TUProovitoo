@@ -24,7 +24,7 @@ databaseChangeLog:
                   type: varchar(255)
 
         - createTable:
-            tableName: clients
+            tableName: clients.zul
             columns:
               - column:
                   name: id
@@ -114,7 +114,7 @@ databaseChangeLog:
 
         # Clients for User 1
         - insert:
-            tableName: clients
+            tableName: clients.zul
             columns:
               - column:
                   name: id
@@ -141,7 +141,7 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: clients
+            tableName: clients.zul
             columns:
               - column:
                   name: id
@@ -170,7 +170,7 @@ databaseChangeLog:
 
         # Clients for User 2
         - insert:
-            tableName: clients
+            tableName: clients.zul
             columns:
               - column:
                   name: id
@@ -197,7 +197,7 @@ databaseChangeLog:
                   name: user_id
                   value: 2
         - insert:
-            tableName: clients
+            tableName: clients.zul
             columns:
               - column:
                   name: id
@@ -226,7 +226,7 @@ databaseChangeLog:
 
         # Clients for User 3
         - insert:
-            tableName: clients
+            tableName: clients.zul
             columns:
               - column:
                   name: id
@@ -253,7 +253,7 @@ databaseChangeLog:
                   name: user_id
                   value: 3
         - insert:
-            tableName: clients
+            tableName: clients.zul
             columns:
               - column:
                   name: id
