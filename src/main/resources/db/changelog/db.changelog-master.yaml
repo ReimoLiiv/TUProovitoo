@@ -24,7 +24,7 @@ databaseChangeLog:
                   type: varchar(255)
 
         - createTable:
-            tableName: mainPage.zul
+            tableName: clients
             columns:
               - column:
                   name: id
@@ -34,10 +34,10 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: firstName
+                  name: first_name
                   type: varchar(255)
               - column:
-                  name: lastName
+                  name: last_name
                   type: varchar(255)
               - column:
                   name: username
@@ -115,16 +115,16 @@ databaseChangeLog:
 
         # Clients for User 1
         - insert:
-            tableName: mainPage.zul
+            tableName: clients
             columns:
               - column:
                   name: id
                   value: 1
               - column:
-                  name: firstName
+                  name: first_name
                   value: "Lotte"
               - column:
-                  name: lastName
+                  name: last_name
                   value: "Leiutajatekülast"
               - column:
                   name: username
@@ -142,16 +142,16 @@ databaseChangeLog:
                   name: user_id
                   value: 1
         - insert:
-            tableName: mainPage.zul
+            tableName: clients
             columns:
               - column:
                   name: id
                   value: 2
               - column:
-                  name: firstName
+                  name: first_name
                   value: "Karlsson"
               - column:
-                  name: lastName
+                  name: last_name
                   value: "Katuselt"
               - column:
                   name: username
@@ -171,16 +171,16 @@ databaseChangeLog:
 
         # Clients for User 2
         - insert:
-            tableName: mainPage.zul
+            tableName: clients
             columns:
               - column:
                   name: id
                   value: 3
               - column:
-                  name: firstName
+                  name: first_name
                   value: "Nublu"
               - column:
-                  name: lastName
+                  name: last_name
                   value: "Pilvepiirilt"
               - column:
                   name: username
@@ -198,16 +198,16 @@ databaseChangeLog:
                   name: user_id
                   value: 2
         - insert:
-            tableName: mainPage.zul
+            tableName: clients
             columns:
               - column:
                   name: id
                   value: 4
               - column:
-                  name: firstName
+                  name: first_name
                   value: "Pipi"
               - column:
-                  name: lastName
+                  name: last_name
                   value: "Pikksukk"
               - column:
                   name: username
@@ -227,16 +227,16 @@ databaseChangeLog:
 
         # Clients for User 3
         - insert:
-            tableName: mainPage.zul
+            tableName: clients
             columns:
               - column:
                   name: id
                   value: 5
               - column:
-                  name: firstName
+                  name: first_name
                   value: "Lionel"
               - column:
-                  name: lastName
+                  name: last_name
                   value: "Messi"
               - column:
                   name: username
@@ -254,16 +254,16 @@ databaseChangeLog:
                   name: user_id
                   value: 3
         - insert:
-            tableName: mainPage.zul
+            tableName: clients
             columns:
               - column:
                   name: id
                   value: 6
               - column:
-                  name: firstName
+                  name: first_name
                   value: "Sipsik"
               - column:
-                  name: lastName
+                  name: last_name
                   value: "Ragdoll"
               - column:
                   name: username
