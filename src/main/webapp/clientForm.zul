@@ -1,0 +1,42 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="${arg.action} Client" border="normal" width="600px" height="auto" closable="true">
+        <vlayout>
+            <grid>
+                <columns>
+                    <column width="150px"/>
+                    <column width="350px"/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="First Name:"/>
+                        <textbox id="firstName" hflex="1" value="${arg.client.firstName}"/>
+                    </row>
+                    <row>
+                        <label value="Last Name:"/>
+                        <textbox id="lastName" hflex="1" value="${arg.client.lastName}"/>
+                    </row>
+                    <row>
+                        <label value="Username:"/>
+                        <textbox id="username" hflex="1" value="${arg.client.username}"/>
+                    </row>
+                    <row>
+                        <label value="Email:"/>
+                        <textbox id="email" hflex="1" value="${arg.client.email}"/>
+                    </row>
+                    <row>
+                        <label value="Address:"/>
+                        <textbox id="address" hflex="1" value="${arg.client.address}"/>
+                    </row>
+                    <row>
+                        <label value="Country:"/>
+                        <textbox id="country" hflex="1" value="${arg.client.country}"/>
+                    </row>
+                </rows>
+            </grid>
+            <separator spacing="10px"/>
+            <hlayout style="justify-content: center;">
+                <button label="DONE"/>
+            </hlayout>
+        </vlayout>
+    </window>
+</zk>

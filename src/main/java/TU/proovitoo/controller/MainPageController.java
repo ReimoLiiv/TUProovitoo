@@ -15,7 +15,9 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainPageController extends SelectorComposer<Window> {
 
@@ -89,11 +91,30 @@ public class MainPageController extends SelectorComposer<Window> {
     }
     @Listen("onClick = #addButton")
     public void onAddClicked() {
-        // Add logic
+        Map<String, Object> args = new HashMap<>();
+        args.put("action", "Add");
+        args.put("client", new Client());
+        args.put("actionCommand", "addClient");
+        Window currentWindow = getSelf();
+        Window window = (Window)Executions.createComponents("clientForm.zul", currentWindow, args);
+        window.doModal();
+        window.setPosition("center");
     }
     @Listen("onClick = #modifyButton")
     public void onModifyClicked() {
-        // Modify logic
+        Listitem selectedItem = clientsListbox.getSelectedItem();
+        if (selectedItem != null) {
+            Client selectedClient = selectedItem.getValue();
+
+            Map<String, Object> args = new HashMap<>();
+            args.put("action", "Modify");
+            args.put("client", selectedClient);
+            args.put("actionCommand", "modifyClient");
+            Window currentWindow = getSelf();
+            Window window = (Window)Executions.createComponents("clientForm.zul", currentWindow, args);
+            window.doModal();
+            window.setPosition("center");
+        }
     }
     @Listen("onClick = #deleteButton")
     public void onDeleteClicked() {
