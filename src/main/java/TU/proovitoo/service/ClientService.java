@@ -16,4 +16,12 @@ public class ClientService {
     public List<Client> getClientsByUserId(Long userId) {
         return clientRepository.findByUserId(userId);
     }
+    public boolean deleteClient(Long clientId) {
+        try {
+            clientRepository.deleteById(clientId);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

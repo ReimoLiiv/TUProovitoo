@@ -36,21 +36,31 @@ databaseChangeLog:
               - column:
                   name: first_name
                   type: varchar(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: last_name
                   type: varchar(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: username
                   type: varchar(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: email
                   type: varchar(255)
               - column:
                   name: address
                   type: varchar(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: country
                   type: varchar(255)
+                  constraints:
+                    nullable: false
               - column:
                   name: user_id
                   type: bigint

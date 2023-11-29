@@ -5,7 +5,7 @@
         <vlayout sclass="main-layout">
             <label id="clientsTitle" sclass="clients-title" value="Clients:"/>
 
-            <listbox id="clientsListbox">
+            <listbox id="clientsListbox" mold="paging" pageSize="10" >
                 <listhead>
                     <listheader label="First Name" />
                     <listheader label="Last Name" />
@@ -15,7 +15,11 @@
                     <listheader label="Country" />
                 </listhead>
             </listbox>
-
+            <hlayout spacing="10px">
+                <button id="addButton" label="Add"/>
+                <button id="modifyButton" label="Modify" disabled="true"/>
+                <button id="deleteButton" label="Delete" disabled="true"/>
+            </hlayout>
         </vlayout>
     </window>
 </zk>
