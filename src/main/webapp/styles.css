@@ -1,0 +1,37 @@
+.centered-title .z-window-header {
+    text-align: center;
+}
+
+.main-window {
+    width: 800px;
+    height: 600px;
+}
+
+.main-layout {
+    height: 100%;
+    position: relative;
+}
+
+.clients-title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.logout-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.login-window {
+    width: 300px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-label, .login-textbox {
+    width: 95%;
+}

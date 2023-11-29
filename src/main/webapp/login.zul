@@ -1,0 +1,14 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <style src="/styles.css"/>
+    <window apply="TU.proovitoo.controller.LoginController" title="Login" id="loginWindow" border="normal" closable="false" draggable="false" sclass="login-window">
+        <vlayout>
+            <label sclass="login-label" value="Username:"/>
+            <textbox id="username" sclass="login-textbox"/>
+
+            <label sclass="login-label" value="Password:"/>
+            <textbox id="password" type="password" sclass="login-textbox"/>
+
+            <button id="loginButton" label="Login" />
+        </vlayout>
+    </window>
+</zk>
