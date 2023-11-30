@@ -78,9 +78,6 @@ databaseChangeLog:
             tableName: users
             columns:
               - column:
-                  name: id
-                  value: 1
-              - column:
                   name: username
                   value: "joonastamm"
               - column:
@@ -94,9 +91,6 @@ databaseChangeLog:
             tableName: users
             columns:
               - column:
-                  name: id
-                  value: 2
-              - column:
                   name: username
                   value: "mariakask"
               - column:
@@ -109,9 +103,6 @@ databaseChangeLog:
         - insert:
             tableName: users
             columns:
-              - column:
-                  name: id
-                  value: 3
               - column:
                   name: username
                   value: ""
@@ -127,9 +118,6 @@ databaseChangeLog:
         - insert:
             tableName: clients
             columns:
-              - column:
-                  name: id
-                  value: 1
               - column:
                   name: first_name
                   value: "Lotte"
@@ -154,9 +142,6 @@ databaseChangeLog:
         - insert:
             tableName: clients
             columns:
-              - column:
-                  name: id
-                  value: 2
               - column:
                   name: first_name
                   value: "Karlsson"
@@ -184,9 +169,6 @@ databaseChangeLog:
             tableName: clients
             columns:
               - column:
-                  name: id
-                  value: 3
-              - column:
                   name: first_name
                   value: "Nublu"
               - column:
@@ -210,9 +192,6 @@ databaseChangeLog:
         - insert:
             tableName: clients
             columns:
-              - column:
-                  name: id
-                  value: 4
               - column:
                   name: first_name
                   value: "Pipi"
@@ -240,9 +219,6 @@ databaseChangeLog:
             tableName: clients
             columns:
               - column:
-                  name: id
-                  value: 5
-              - column:
                   name: first_name
                   value: "Lionel"
               - column:
@@ -266,9 +242,6 @@ databaseChangeLog:
         - insert:
             tableName: clients
             columns:
-              - column:
-                  name: id
-                  value: 6
               - column:
                   name: first_name
                   value: "Sipsik"
