@@ -1,6 +1,6 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <style src="/styles.css"/>
-    <window apply="TU.proovitoo.controller.MainPageController" sclass="centered-title main-window" title="Main Page" border="normal" width="100%" height="100%">
+    <window id="mainPage" apply="TU.proovitoo.controller.MainPageController" sclass="centered-title main-window" title="Main Page" border="normal" width="100%" height="100%">
         <button id="logoutButton" label="Log Out" sclass="logout-button"/>
         <vlayout sclass="main-layout">
             <label id="clientsTitle" sclass="clients-title" value="Clients:"/>
@@ -20,6 +20,7 @@
                 <button id="modifyButton" label="Modify" disabled="true"/>
                 <button id="deleteButton" label="Delete" disabled="true"/>
             </hlayout>
+            <include src="clientForm.zul" id="clientFormInclude" visible="false"/>
         </vlayout>
     </window>
 </zk>

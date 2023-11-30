@@ -24,4 +24,12 @@ public class ClientService {
             return false;
         }
     }
+    public boolean addOrModify(Client client) {
+        try {
+            clientRepository.save(client);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

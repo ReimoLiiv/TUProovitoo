@@ -1,5 +1,6 @@
 package TU.proovitoo;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -10,6 +11,10 @@ import org.springframework.core.Ordered;
 import org.zkoss.zk.au.http.DHtmlUpdateServlet;
 import org.zkoss.zk.ui.http.DHtmlLayoutServlet;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,3 +49,4 @@ public class ProovitooApplication extends SpringBootServletInitializer {
 		SpringApplication.run(ProovitooApplication.class, args);
 	}
 }
+

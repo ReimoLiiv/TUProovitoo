@@ -1,5 +1,5 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="${arg.action} Client" border="normal" width="600px" height="auto" closable="true">
+    <window id="clientFormWindow" apply="TU.proovitoo.controller.ClientFormController" title="${arg.action} Client" border="normal" width="600px" height="auto" closable="true">
         <vlayout>
             <grid>
                 <columns>
@@ -8,15 +8,24 @@
                 </columns>
                 <rows>
                     <row>
-                        <label value="First Name:"/>
+                        <hlayout>
+                            <label value="First Name:"/>
+                            <label value="*" style="color:red;"/>
+                        </hlayout>
                         <textbox id="firstName" hflex="1" value="${arg.client.firstName}"/>
                     </row>
                     <row>
-                        <label value="Last Name:"/>
+                        <hlayout>
+                            <label value="Last Name:"/>
+                            <label value="*" style="color:red;"/>
+                        </hlayout>
                         <textbox id="lastName" hflex="1" value="${arg.client.lastName}"/>
                     </row>
                     <row>
-                        <label value="Username:"/>
+                        <hlayout>
+                            <label value="Username:"/>
+                            <label value="*" style="color:red;"/>
+                        </hlayout>
                         <textbox id="username" hflex="1" value="${arg.client.username}"/>
                     </row>
                     <row>
@@ -24,18 +33,25 @@
                         <textbox id="email" hflex="1" value="${arg.client.email}"/>
                     </row>
                     <row>
-                        <label value="Address:"/>
+                        <hlayout>
+                            <label value="Address:"/>
+                            <label value="*" style="color:red;"/>
+                        </hlayout>
                         <textbox id="address" hflex="1" value="${arg.client.address}"/>
                     </row>
                     <row>
-                        <label value="Country:"/>
+                        <hlayout>
+                            <label value="Country:"/>
+                            <label value="*" style="color:red;"/>
+                        </hlayout>
                         <textbox id="country" hflex="1" value="${arg.client.country}"/>
                     </row>
                 </rows>
             </grid>
+            <label value="* Fields are mandatory" style="color:red; font-size: small;"/>
             <separator spacing="10px"/>
             <hlayout style="justify-content: center;">
-                <button label="DONE"/>
+                <button id="doneButton" label="DONE"/>
             </hlayout>
         </vlayout>
     </window>

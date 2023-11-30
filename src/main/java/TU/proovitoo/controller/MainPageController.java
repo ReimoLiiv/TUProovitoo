@@ -4,12 +4,14 @@ import TU.proovitoo.model.Client;
 import TU.proovitoo.model.User;
 import TU.proovitoo.service.AuthenticationService;
 import TU.proovitoo.service.ClientService;
+import TU.proovitoo.utils.Utils;
 import jakarta.servlet.ServletContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -18,6 +20,8 @@ import org.zkoss.zul.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static TU.proovitoo.utils.Utils.showSuccessMessage;
 
 public class MainPageController extends SelectorComposer<Window> {
 
@@ -60,23 +64,6 @@ public class MainPageController extends SelectorComposer<Window> {
         clientsTitle.setValue("Clients:");
         loadClients(authenticatedUser.getId());
     }
-
-    private void loadClients(Long userId) {
-        List<Client> clients = clientService.getClientsByUserId(userId);
-        clientsListbox.getItems().clear();
-
-        for (Client client : clients) {
-            Listitem listItem = new Listitem();
-            listItem.appendChild(new Listcell(client.getFirstName()));
-            listItem.appendChild(new Listcell(client.getLastName()));
-            listItem.appendChild(new Listcell(client.getUsername()));
-            listItem.appendChild(new Listcell(client.getEmail()));
-            listItem.appendChild(new Listcell(client.getAddress()));
-            listItem.appendChild(new Listcell(client.getCountry()));
-            listItem.setValue(client);
-            clientsListbox.appendChild(listItem);
-        }
-    }
     @Listen("onClick = #logoutButton")
     public void onLogoutClicked() {
         Session session = Sessions.getCurrent();
@@ -91,31 +78,19 @@ public class MainPageController extends SelectorComposer<Window> {
     }
     @Listen("onClick = #addButton")
     public void onAddClicked() {
-        Map<String, Object> args = new HashMap<>();
-        args.put("action", "Add");
-        args.put("client", new Client());
-        args.put("actionCommand", "addClient");
-        Window currentWindow = getSelf();
-        Window window = (Window)Executions.createComponents("clientForm.zul", currentWindow, args);
-        window.doModal();
-        window.setPosition("center");
+        openClientForm(new Client(), OperationType.ADD);
     }
+
     @Listen("onClick = #modifyButton")
     public void onModifyClicked() {
         Listitem selectedItem = clientsListbox.getSelectedItem();
         if (selectedItem != null) {
             Client selectedClient = selectedItem.getValue();
-
-            Map<String, Object> args = new HashMap<>();
-            args.put("action", "Modify");
-            args.put("client", selectedClient);
-            args.put("actionCommand", "modifyClient");
-            Window currentWindow = getSelf();
-            Window window = (Window)Executions.createComponents("clientForm.zul", currentWindow, args);
-            window.doModal();
-            window.setPosition("center");
+            openClientForm(selectedClient, OperationType.MODIFY);
         }
     }
+
+
     @Listen("onClick = #deleteButton")
     public void onDeleteClicked() {
         Messagebox.show("Are you sure you want to delete this client?",
@@ -139,28 +114,28 @@ public class MainPageController extends SelectorComposer<Window> {
 
                             if (deletionSuccessful) {
                                 showSuccessMessage(OperationType.DELETE);
+
                             }
                         }
                     }
                 }
         );
     }
-    private void showSuccessMessage(OperationType operationType) {
-        String message;
-        switch (operationType) {
-            case ADD:
-                message = "Client successfully added!";
-                break;
-            case DELETE:
-                message = "Client successfully deleted!";
-                break;
-            case MODIFY:
-                message = "Client details successfully modified!";
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown operation type");
-        }
+    private void openClientForm(Client client, OperationType operationType) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("client", client);
+        args.put("actionCommand", operationType);
+        args.put("clientsListbox", clientsListbox);
+        args.put("deleteButton", deleteButton);
+        args.put("modifyButton", modifyButton);
 
-        Messagebox.show(message, "Success", Messagebox.OK, Messagebox.INFORMATION);
+        Window currentWindow = getSelf();
+        Window window = (Window) Executions.createComponents("clientForm.zul", currentWindow, args);
+        window.doModal();
+        window.setPosition("center");
+    }
+    private void loadClients(Long userId) {
+        List<Client> clients = clientService.getClientsByUserId(userId);
+        Utils.loadClients(clientsListbox, clients, deleteButton, modifyButton);
     }
 }
