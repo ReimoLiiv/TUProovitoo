@@ -39,10 +39,9 @@ Log in using these credentials:
 The application demonstrates various functionalities provided by the ZK Framework in a Spring Boot environment. Enjoy exploring the application!
 
 ## Future improvements
-This is demo application, there is a lack of security. For example passwords are not encrypted and field validation takes place only in UI.
-To improve application, password encryption and back end validation must be done.
-
-This application don't have any tests, in the future it is recommend to write tests as well.
+This is demo application and not commercial ready.
+To improve application, password encryption must be done. Also, This application don't have any tests, 
+in the future it is recommended to write tests as well.
 
 ## Support
 If you encounter any issues or have questions, please contact Reimo Liiv (liivreimo@gmail.com)

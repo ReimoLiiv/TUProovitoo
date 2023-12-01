@@ -30,6 +30,9 @@ public class ClientService {
         }
     }
     public boolean addOrModify(Client client) {
+        if (!isValidClient(client)) {
+            return false;
+        }
         try {
             clientRepository.save(client);
             return true;
@@ -39,5 +42,25 @@ public class ClientService {
     }
     public List<Country> getAllCountries() {
         return countryRepository.findAll();
+    }
+    private boolean isValidClient(Client client) {
+        return isValidName(client.getFirstName()) &&
+                isValidName(client.getLastName()) &&
+                isValidUsername(client.getUsername()) &&
+                (client.getEmail() == null || client.getEmail().contains("@")) &&
+                isValidAddress(client.getAddress()) &&
+                client.getCountry() != null;
+    }
+
+    private boolean isValidName(String name) {
+        return name != null && name.trim().length() >= 2 && name.matches("[a-zA-ZäöüõÄÖÜÕ]+");
+    }
+
+    private boolean isValidUsername(String username) {
+        return username != null && username.trim().length() >= 5;
+    }
+
+    private boolean isValidAddress(String address) {
+        return address != null && !address.trim().isEmpty();
     }
 }
