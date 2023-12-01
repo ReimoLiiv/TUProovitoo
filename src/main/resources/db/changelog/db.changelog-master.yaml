@@ -69,6 +69,22 @@ databaseChangeLog:
                     foreignKeyName: fk_users_clients
                     references: users(id)
 
+        - createTable:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
   - changeSet:
       id: 2
       author: Reimo
@@ -79,10 +95,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-                  value: "joonastamm"
+                  value: "joonas123"
               - column:
                   name: password
-                  value: "sipelgas"
+                  value: "fiction"
               - column:
                   name: name
                   value: "Joonas"
@@ -92,10 +108,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-                  value: "mariakask"
+                  value: "maria123"
               - column:
                   name: password
-                  value: "elevant"
+                  value: "doping"
               - column:
                   name: name
                   value: "Maria"
@@ -135,7 +151,7 @@ databaseChangeLog:
                   value: "Leiutajate 1, Leiutajateküla"
               - column:
                   name: country
-                  value: "Eesti"
+                  value: "EST"
               - column:
                   name: user_id
                   value: 1
@@ -159,7 +175,7 @@ databaseChangeLog:
                   value: "Lennutänav 1, Tallinn"
               - column:
                   name: country
-                  value: "Eesti"
+                  value: "EST"
               - column:
                   name: user_id
                   value: 1
@@ -170,22 +186,22 @@ databaseChangeLog:
             columns:
               - column:
                   name: first_name
-                  value: "Nublu"
+                  value: "Andrus"
               - column:
                   name: last_name
-                  value: "Pilvepiirilt"
+                  value: "Veerpalu"
               - column:
                   name: username
-                  value: "nublupilv"
+                  value: "innocent"
               - column:
                   name: email
-                  value: "nublu@pilvemail.ee"
+                  value: "no@doping.ee"
               - column:
                   name: address
-                  value: "Pilvetee 7, Kuressaare"
+                  value: "Otepää"
               - column:
                   name: country
-                  value: "Eesti"
+                  value: "EST"
               - column:
                   name: user_id
                   value: 2
@@ -194,22 +210,22 @@ databaseChangeLog:
             columns:
               - column:
                   name: first_name
-                  value: "Pipi"
+                  value: "Mati"
               - column:
                   name: last_name
-                  value: "Pikksukk"
+                  value: "Alaver"
               - column:
                   name: username
-                  value: "pipip"
+                  value: "kindral"
               - column:
                   name: email
-                  value: "pipi@pikksukk.ee"
+                  value: "toon@verd.ee"
               - column:
                   name: address
-                  value: "Vahtrapuu 1, Võru"
+                  value: "unknown"
               - column:
                   name: country
-                  value: "Eesti"
+                  value: "EST"
               - column:
                   name: user_id
                   value: 2
@@ -226,7 +242,7 @@ databaseChangeLog:
                   value: "Messi"
               - column:
                   name: username
-                  value: "lionelm"
+                  value: "wizard"
               - column:
                   name: email
                   value: "lionel.messi@jalgpall.ee"
@@ -235,7 +251,7 @@ databaseChangeLog:
                   value: "Goalkeeper 10, Miami"
               - column:
                   name: country
-                  value: "USA"
+                  value: "ARG"
               - column:
                   name: user_id
                   value: 3
@@ -244,23 +260,55 @@ databaseChangeLog:
             columns:
               - column:
                   name: first_name
-                  value: "Sipsik"
+                  value: "Christiano"
               - column:
                   name: last_name
-                  value: "Ragdoll"
+                  value: "Ronaldo"
               - column:
                   name: username
-                  value: "sipsikr"
+                  value: "i am best"
               - column:
                   name: email
-                  value: "sipsik@nukk.ee"
+                  value: "best@arabia.ee"
               - column:
                   name: address
-                  value: "Nukumaja 5, Narva"
+                  value: "Mansion, Arab"
               - column:
                   name: country
-                  value: "Eesti"
+                  value: "POR"
               - column:
                   name: user_id
                   value: 3
+
+        # countries
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "POR"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "ARG"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "EST"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "FIN"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "USA"
 

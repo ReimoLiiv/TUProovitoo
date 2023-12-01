@@ -1,15 +1,16 @@
 package TU.proovitoo.controller;
 
 import TU.proovitoo.model.Client;
+import TU.proovitoo.model.Country;
 import TU.proovitoo.model.User;
 import TU.proovitoo.service.ClientService;
 import jakarta.servlet.ServletContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -33,7 +34,7 @@ public class ClientFormController extends SelectorComposer<Component> {
     @Wire
     private Textbox address;
     @Wire
-    private Textbox country;
+    private Combobox country;
     @Wire
     private Window clientFormWindow;
     @Wire
@@ -42,6 +43,8 @@ public class ClientFormController extends SelectorComposer<Component> {
     private Button modifyButton;
     private Listbox clientsListbox;
     private ClientService clientService;
+    @Autowired
+    private ClientService countryService;
     private Client client;
     private MainPageController.OperationType action;
 
@@ -53,6 +56,15 @@ public class ClientFormController extends SelectorComposer<Component> {
         ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(servletContext);
         this.clientService = ctx.getBean(ClientService.class);
 
+        List<Country> countries = clientService.getAllCountries();
+        country.setModel(new ListModelList<>(countries));
+        country.setItemRenderer(new ComboitemRenderer<Country>() {
+            @Override
+            public void render(Comboitem item, Country country, int index) throws Exception {
+                item.setLabel(country.getName());
+                item.setValue(country);
+            }
+        });
         this.client = (Client) Executions.getCurrent().getArg().get("client");
         this.action = (MainPageController.OperationType) Executions.getCurrent().getArg().get("actionCommand");
         this.clientsListbox = (Listbox) Executions.getCurrent().getArg().get("clientsListbox");

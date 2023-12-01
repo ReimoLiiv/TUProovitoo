@@ -44,7 +44,7 @@
                             <label value="Country:"/>
                             <label value="*" style="color:red;"/>
                         </hlayout>
-                        <textbox id="country" hflex="1" value="${arg.client.country}"/>
+                        <combobox id="country" readonly="true"></combobox>
                     </row>
                 </rows>
             </grid>
