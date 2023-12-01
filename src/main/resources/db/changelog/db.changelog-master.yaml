@@ -121,10 +121,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-                  value: ""
+                  value: "toomas111"
               - column:
                   name: password
-                  value: ""
+                  value: "soccer"
               - column:
                   name: name
                   value: "Toomas"
