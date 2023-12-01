@@ -2,7 +2,6 @@ package TU.proovitoo.controller;
 
 import TU.proovitoo.model.Client;
 import TU.proovitoo.model.User;
-import TU.proovitoo.service.AuthenticationService;
 import TU.proovitoo.service.ClientService;
 import TU.proovitoo.utils.Utils;
 import jakarta.servlet.ServletContext;
@@ -11,7 +10,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;

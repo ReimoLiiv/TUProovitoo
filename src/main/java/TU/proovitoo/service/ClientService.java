@@ -1,7 +1,9 @@
 package TU.proovitoo.service;
 
 import TU.proovitoo.model.Client;
+import TU.proovitoo.model.Country;
 import TU.proovitoo.repository.ClientRepository;
+import TU.proovitoo.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private CountryRepository countryRepository;
+
 
     public List<Client> getClientsByUserId(Long userId) {
         return clientRepository.findByUserId(userId);
@@ -31,5 +36,8 @@ public class ClientService {
         } catch (Exception e) {
             return false;
         }
+    }
+    public List<Country> getAllCountries() {
+        return countryRepository.findAll();
     }
 }
