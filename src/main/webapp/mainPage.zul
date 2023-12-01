@@ -16,7 +16,7 @@
                 </listhead>
             </listbox>
             <hlayout spacing="10px">
-                <button id="addButton" label="Add"/>
+                <button id="addButton" label="Add Client"/>
                 <button id="modifyButton" label="Modify" disabled="true"/>
                 <button id="deleteButton" label="Delete" disabled="true"/>
             </hlayout>
