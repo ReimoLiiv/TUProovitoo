@@ -43,4 +43,4 @@ This is demo application, there is a lack of security. For example passwords are
 To improve application, password encryption and back end validation must be done.
 
 ## Support
-If you encounter any issues or have questions, please contact Reimo Liiv (56679961)
+If you encounter any issues or have questions, please contact Reimo Liiv (liivreimo@gmail.com)
