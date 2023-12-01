@@ -35,3 +35,8 @@
 .login-label, .login-textbox {
     width: 95%;
 }
+
+.validation-error {
+    border: 1px solid red;
+}
+

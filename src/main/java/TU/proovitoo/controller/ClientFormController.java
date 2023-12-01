@@ -9,9 +9,11 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.*;
 
 import java.util.List;
@@ -59,7 +61,9 @@ public class ClientFormController extends SelectorComposer<Component> {
     }
     @Listen("onClick = #doneButton")
     public void onDoneClicked() {
-        if (isAllFieldsFilled()) {
+        if (!validateForm()) {
+            return;
+        }
             setClientValues();
             boolean addOrModifySuccessful = clientService.addOrModify(client);
             if (addOrModifySuccessful) {
@@ -67,9 +71,46 @@ public class ClientFormController extends SelectorComposer<Component> {
                 refreshClients();
             }
             clientFormWindow.detach();
-        } else {
-            Messagebox.show("Please fill mandatory fields!", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
+    }
+    private boolean validateForm() {
+        boolean isFirstNameValid = validateNameField(firstName);
+        boolean isLastNameValid = validateNameField(lastName);
+        boolean isUsernameValid = validateField(username, !username.getValue().trim().isEmpty() && username.getValue().trim().length() >= 5, "Username must have at least 5 characters");
+        boolean isEmailValid = email.getValue().trim().isEmpty() || validateField(email, email.getValue().contains("@"), "You probably forgot @");
+        boolean isAddressValid = validateField(address, !address.getValue().trim().isEmpty(), "I don't believe that this is your address");
+        boolean isCountryValid = validateField(country, !country.getValue().trim().isEmpty(), "You cannot leave this empty");
+
+        return isFirstNameValid && isLastNameValid && isUsernameValid && isEmailValid && isAddressValid && isCountryValid;
+    }
+
+    private boolean validateNameField(Textbox field) {
+        if (field.getValue().trim().isEmpty()) {
+            setFieldError(field, "You cannot leave this empty");
+            return false;
+        } else if (!isValidName(field.getValue())) {
+            setFieldError(field, "You probably don't have these symbols in the name");
+            return false;
+        } else if (field.getValue().trim().length() < 2) {
+            setFieldError(field, "You probably have a longer name");
+            return false;
         }
+        return true;
+    }
+
+    private boolean validateField(Textbox field, boolean condition, String errorMsg) {
+        if (!condition) {
+            setFieldError(field, errorMsg);
+            return false;
+        }
+        return true;
+    }
+
+    private void setFieldError(Textbox field, String errorMsg) {
+        Clients.showNotification(errorMsg, "warning", field, "end_center", 5000);
+    }
+
+    private boolean isValidName(String name) {
+        return name.matches("[a-zA-Z]+");
     }
 
     private void setClientValues() {
@@ -94,13 +135,5 @@ public class ClientFormController extends SelectorComposer<Component> {
     private static Long findUserId() {
         User authenticatedUser = (User) Sessions.getCurrent().getAttribute("authenticatedUser");
         return authenticatedUser.getId();
-    }
-
-    private boolean isAllFieldsFilled() {
-        return !firstName.getValue().trim().isEmpty() &&
-                !lastName.getValue().trim().isEmpty() &&
-                !username.getValue().trim().isEmpty() &&
-                !address.getValue().trim().isEmpty() &&
-                !country.getValue().trim().isEmpty();
     }
 }
