@@ -122,7 +122,7 @@ public class ClientFormController extends SelectorComposer<Component> {
     }
 
     private boolean isValidName(String name) {
-        return name.matches("[a-zA-Z]+");
+        return name.matches("[a-zA-ZäöüõÄÖÜÕ]+");
     }
 
     private void setClientValues() {
