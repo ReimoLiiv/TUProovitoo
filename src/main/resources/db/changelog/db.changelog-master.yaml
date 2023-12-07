@@ -24,6 +24,23 @@ databaseChangeLog:
                   type: varchar(255)
 
         - createTable:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+        - createTable:
             tableName: clients
             columns:
               - column:
@@ -61,6 +78,8 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
+                    foreignKeyName: fk_clients_countries
+                    references: countries(name)
               - column:
                   name: user_id
                   type: bigint
@@ -68,22 +87,6 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: fk_users_clients
                     references: users(id)
-
-        - createTable:
-            tableName: countries
-            columns:
-              - column:
-                  name: id
-                  type: bigint
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: name
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
 
   - changeSet:
       id: 2
@@ -108,10 +111,10 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-                  value: "maria123"
+                  value: ""
               - column:
                   name: password
-                  value: "doping"
+                  value: ""
               - column:
                   name: name
                   value: "Maria"
@@ -129,6 +132,37 @@ databaseChangeLog:
                   name: name
                   value: "Toomas"
 
+        # countries
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "POR"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "ARG"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "EST"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "FIN"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "USA"
 
         # Clients for User 1
         - insert:
@@ -279,36 +313,4 @@ databaseChangeLog:
               - column:
                   name: user_id
                   value: 3
-
-        # countries
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "POR"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "ARG"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "EST"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "FIN"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "USA"
 
