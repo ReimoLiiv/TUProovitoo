@@ -2,6 +2,7 @@ databaseChangeLog:
   - changeSet:
       id: 1
       author: Reimo
+      context: "tableCreation"
       changes:
         - createTable:
             tableName: users
@@ -22,6 +23,23 @@ databaseChangeLog:
               - column:
                   name: name
                   type: varchar(255)
+
+        - createTable:
+            tableName: countries
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
 
         - createTable:
             tableName: clients
@@ -61,6 +79,8 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
+                    foreignKeyName: fk_clients_countries
+                    references: countries(name)
               - column:
                   name: user_id
                   type: bigint
@@ -69,66 +89,43 @@ databaseChangeLog:
                     foreignKeyName: fk_users_clients
                     references: users(id)
 
-        - createTable:
-            tableName: countries
-            columns:
-              - column:
-                  name: id
-                  type: bigint
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: name
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-
   - changeSet:
       id: 2
       author: Reimo
+      context: "dataInsertion"
       changes:
-        # User 1
+        -
+        # countries
         - insert:
-            tableName: users
+            tableName: countries
             columns:
               - column:
-                  name: username
-                  value: "joonas123"
-              - column:
-                  name: password
-                  value: "fiction"
-              - column:
                   name: name
-                  value: "Joonas"
-        # User 2
+                  value: "POR"
         - insert:
-            tableName: users
+            tableName: countries
             columns:
               - column:
-                  name: username
-                  value: "maria123"
-              - column:
-                  name: password
-                  value: "doping"
-              - column:
                   name: name
-                  value: "Maria"
-        # User 3
+                  value: "ARG"
         - insert:
-            tableName: users
+            tableName: countries
             columns:
               - column:
-                  name: username
-                  value: "toomas111"
-              - column:
-                  name: password
-                  value: "soccer"
+                  name: name
+                  value: "EST"
+        - insert:
+            tableName: countries
+            columns:
               - column:
                   name: name
-                  value: "Toomas"
-
+                  value: "FIN"
+        - insert:
+            tableName: countries
+            columns:
+              - column:
+                  name: name
+                  value: "USA"
 
         # Clients for User 1
         - insert:
@@ -279,36 +276,4 @@ databaseChangeLog:
               - column:
                   name: user_id
                   value: 3
-
-        # countries
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "POR"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "ARG"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "EST"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "FIN"
-        - insert:
-            tableName: countries
-            columns:
-              - column:
-                  name: name
-                  value: "USA"
 

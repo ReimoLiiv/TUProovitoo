@@ -1,9 +1,8 @@
 package TU.proovitoo.controller;
 
 import TU.proovitoo.model.User;
-import TU.proovitoo.service.AuthenticationService;
+import TU.proovitoo.service.UserService;
 import jakarta.servlet.ServletContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -23,14 +22,14 @@ public class LoginController extends SelectorComposer<Window> {
     @Wire
     private Textbox password;
 
-    private AuthenticationService authService;
+    private UserService authService;
 
     @Override
     public void doAfterCompose(Window comp) throws Exception {
         super.doAfterCompose(comp);
         ServletContext servletContext = Executions.getCurrent().getDesktop().getWebApp().getServletContext();
         ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-        this.authService = ctx.getBean(AuthenticationService.class);
+        this.authService = ctx.getBean(UserService.class);
     }
 
     @Listen("onClick = #loginButton; onOK = #loginWindow")

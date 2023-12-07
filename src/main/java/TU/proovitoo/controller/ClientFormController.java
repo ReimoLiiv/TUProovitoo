@@ -4,8 +4,8 @@ import TU.proovitoo.model.Client;
 import TU.proovitoo.model.Country;
 import TU.proovitoo.model.User;
 import TU.proovitoo.service.ClientService;
+import TU.proovitoo.service.CountryService;
 import jakarta.servlet.ServletContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.zkoss.zk.ui.Component;
@@ -19,7 +19,6 @@ import org.zkoss.zul.*;
 
 import java.util.List;
 
-import static TU.proovitoo.utils.Utils.loadClients;
 import static TU.proovitoo.utils.Utils.showSuccessMessage;
 
 public class ClientFormController extends SelectorComposer<Component> {
@@ -43,8 +42,7 @@ public class ClientFormController extends SelectorComposer<Component> {
     private Button modifyButton;
     private Listbox clientsListbox;
     private ClientService clientService;
-    @Autowired
-    private ClientService countryService;
+    private CountryService countryService;
     private Client client;
     private MainPageController.OperationType action;
 
@@ -55,8 +53,9 @@ public class ClientFormController extends SelectorComposer<Component> {
         ServletContext servletContext = Executions.getCurrent().getDesktop().getWebApp().getServletContext();
         ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(servletContext);
         this.clientService = ctx.getBean(ClientService.class);
+        this.countryService = ctx.getBean(CountryService.class);
 
-        List<Country> countries = clientService.getAllCountries();
+        List<Country> countries = countryService.getAllCountries();
         country.setModel(new ListModelList<>(countries));
         country.setItemRenderer(new ComboitemRenderer<Country>() {
             @Override
@@ -88,9 +87,9 @@ public class ClientFormController extends SelectorComposer<Component> {
         boolean isFirstNameValid = validateNameField(firstName);
         boolean isLastNameValid = validateNameField(lastName);
         boolean isUsernameValid = validateField(username, !username.getValue().trim().isEmpty() && username.getValue().trim().length() >= 5, "Username must have at least 5 characters");
-        boolean isEmailValid = email.getValue().trim().isEmpty() || validateField(email, email.getValue().contains("@"), "You probably forgot @");
-        boolean isAddressValid = validateField(address, !address.getValue().trim().isEmpty(), "I don't believe that this is your address");
-        boolean isCountryValid = validateField(country, !country.getValue().trim().isEmpty(), "You cannot leave this empty");
+        boolean isEmailValid = email.getValue().trim().isEmpty() || validateField(email, email.getValue().matches("^[a-zA-Z]+@[a-zA-Z]+\\.[a-zA-Z]{2,}$"), "I don't believe that this is your true email");
+        boolean isAddressValid = validateField(address, address.getValue().trim().length() >= 2, "I don't believe that this is your address");
+        boolean isCountryValid = validateField(country, country.getValue().trim().length() > 0, "You cannot leave this empty");
 
         return isFirstNameValid && isLastNameValid && isUsernameValid && isEmailValid && isAddressValid && isCountryValid;
     }
@@ -141,7 +140,7 @@ public class ClientFormController extends SelectorComposer<Component> {
     private void refreshClients() {
         Long userId = findUserId();
         List<Client> clients = clientService.getClientsByUserId(userId);
-        loadClients(clientsListbox, clients, deleteButton, modifyButton);
+        clientService.loadClients(clientsListbox, clients, deleteButton, modifyButton);
     }
 
     private static Long findUserId() {
