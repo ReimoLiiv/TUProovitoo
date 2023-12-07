@@ -2,6 +2,7 @@ databaseChangeLog:
   - changeSet:
       id: 1
       author: Reimo
+      context: "tableCreation"
       changes:
         - createTable:
             tableName: users
@@ -91,47 +92,9 @@ databaseChangeLog:
   - changeSet:
       id: 2
       author: Reimo
+      context: "dataInsertion"
       changes:
-        # User 1
-        - insert:
-            tableName: users
-            columns:
-              - column:
-                  name: username
-                  value: "joonas123"
-              - column:
-                  name: password
-                  value: "fiction"
-              - column:
-                  name: name
-                  value: "Joonas"
-        # User 2
-        - insert:
-            tableName: users
-            columns:
-              - column:
-                  name: username
-                  value: ""
-              - column:
-                  name: password
-                  value: ""
-              - column:
-                  name: name
-                  value: "Maria"
-        # User 3
-        - insert:
-            tableName: users
-            columns:
-              - column:
-                  name: username
-                  value: "toomas111"
-              - column:
-                  name: password
-                  value: "soccer"
-              - column:
-                  name: name
-                  value: "Toomas"
-
+        -
         # countries
         - insert:
             tableName: countries
